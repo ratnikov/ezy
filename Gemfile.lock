@@ -1,4 +1,10 @@
 GIT
+  remote: http://github.com/ratnikov/rr.git
+  revision: 52dab6d
+  specs:
+    rr (1.0.0)
+
+GIT
   remote: http://github.com/thoughtbot/clearance.git
   revision: 56b3ec0
   specs:
@@ -119,5 +125,6 @@ DEPENDENCIES
   cucumber-rails
   pg
   rails (= 3.0.0.rc2)
+  rr!
   shoulda!
   test-unit
