@@ -11,6 +11,7 @@ group :test do
 
   gem 'rr', :git => 'http://github.com/ratnikov/rr.git'
 
+  gem 'factory_girl_rails'
 
   gem 'cucumber'
   gem 'cucumber-rails'

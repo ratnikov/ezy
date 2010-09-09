@@ -4,6 +4,8 @@ class CreateRoutes < ActiveRecord::Migration
       t.string :to, :from
       t.datetime :arrive_at
 
+      t.belongs_to :user
+
       t.timestamps
     end
   end

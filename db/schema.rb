@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(:version => 20100909223820) do
     t.string   "to"
     t.string   "from"
     t.datetime "arrive_at"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
