@@ -1,4 +1,11 @@
 GIT
+  remote: http://github.com/thoughtbot/clearance.git
+  revision: 56b3ec0
+  specs:
+    clearance (0.9.0.rc9)
+      rails (~> 3.0.0)
+
+GIT
   remote: http://github.com/thoughtbot/shoulda.git
   revision: 02520e4
   specs:
@@ -107,6 +114,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  clearance!
   cucumber
   cucumber-rails
   pg

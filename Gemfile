@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.0.rc2'
 
 gem 'pg'
+gem 'clearance', :git => 'http://github.com/thoughtbot/clearance.git'
 
 group :test do
   gem 'test-unit'
