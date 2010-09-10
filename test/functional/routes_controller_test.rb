@@ -10,7 +10,11 @@ class RoutesControllerTest < ActionController::TestCase
   end
 
   context "#create" do
-    setup { post :create, :route => { :from => 'point A', :to => 'point B', :arrive_at => @arrive_at = Time.now, :email => 'someone@example.com', :password => 'secret' } }
+    setup do
+      register_geo_locations 'point A' => [ 1, 1 ], 'point B' => [ 2, 2 ]
+
+      post :create, :route => { :from_address => 'point A', :to_address => 'point B', :arrive_at => @arrive_at = Time.now, :email => 'someone@example.com', :password => 'secret' }
+    end
 
     should render_template('create')
 
@@ -25,8 +29,9 @@ class RoutesControllerTest < ActionController::TestCase
 
       assert_equal User.authenticate('someone@example.com', 'secret'), route.user, "Should assign the user correctly"
       
-      assert_equal 'point A', route.from
-      assert_equal 'point B', route.to
+      assert_equal Address.find_by_address('point A'), route.from
+      assert_equal Address.find_by_address('point B'), route.to
+
       assert_equal @arrive_at, route.arrive_at
     end
   end

@@ -24,8 +24,8 @@ class Route < ActiveRecord::Base
       lat1 = "RADIANS(#{connection.quote address.lat})"
       lng1 = "RADIANS(#{connection.quote address.lng})"
 
-      lat2 = %{RADIANS(%s."lat":)} % quoted_address_table
-      lng2 = %{RADIANS(%s."lng3")} % quoted_address_table
+      lat2 = %{RADIANS(%s."lat")} % quoted_address_table
+      lng2 = %{RADIANS(%s."lng")} % quoted_address_table
 
       <<-SQL
         2*ASIN(LEAST(1, POW(SIN((#{lat1} - #{lat2}) / 2.0), 2) + COS(#{lat1})*COS(#{lat2})*POW(SIN((#{lng1} - #{lng2}) / 2.0), 2)))
