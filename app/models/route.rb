@@ -52,7 +52,7 @@ class Route < ActiveRecord::Base
 
     unless self.user = User.authenticate(email, password)
       if User.exists?(:email => email)
-        errors[:password] << 'Incorrect password'
+        errors[:password] << 'is incorrect'
       else
         build_user(:email => email, :password => password) if user.nil?
       end
@@ -60,14 +60,18 @@ class Route < ActiveRecord::Base
   end
 
   def setup_to_address
+    return if to_address.blank?
+
     build_to :address => to_address
 
-    errors[:to_address] << 'Failed to look up' unless to.valid?
+    errors[:to_address] << 'is invalid' unless to.valid?
   end
 
   def setup_from_address
+    return if from_address.blank?
+
     build_from :address => from_address
 
-    errors[:from_address] << 'Failed to look up' unless from.valid?
+    errors[:from_address] << 'is invalid' unless from.valid?
   end
 end

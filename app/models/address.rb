@@ -17,6 +17,6 @@ class Address < ActiveRecord::Base
     write_attribute :lat, location.latitude
     write_attribute :lng, location.longitude
   rescue Graticule::AddressError
-    errors[:address] << "Failed to lookup address"
+    errors[:address] << "seems to be invalid"
   end
 end
