@@ -19,7 +19,7 @@ class ActiveSupport::TestCase
     when :bad_address then fixture_file('google_geo_bad.xml')
     end
 
-    FakeWeb.register_uri :get, URI.escape("http://maps.google.com/maps/geo?key=#{ApplicationConfig.google_api_key}&output=xml&q=#{query}"), :body => body
+    FakeWeb.register_uri :get, URI.escape("http://maps.google.com/maps/geo?key=#{ApplicationConfig.google_api_key}&oe=utf8&output=xml&q=#{query}&sensor=false"), :body => body
   end
 
   def register_geo_locations(hash)
