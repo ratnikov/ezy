@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class AddressTest < ActiveSupport::TestCase
+  should validate_presence_of(:address)
+
   context "creating and address" do
     should ("lookup coordinates") do
       register_geo_location 'random place', [ 20, -20 ]

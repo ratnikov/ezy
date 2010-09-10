@@ -3,11 +3,15 @@ require 'geocoder'
 class Address < ActiveRecord::Base
   attr_accessible :address
 
-  validate :lookup_coordinates
+  validates_presence_of :address
+
+  after_validation :lookup_coordinates, :on => :create
 
   private
 
   def lookup_coordinates
+    return if address.blank?
+
     location = Geocoder.locate(address)
 
     write_attribute :lat, location.latitude
