@@ -10,13 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100909223820) do
+ActiveRecord::Schema.define(:version => 20100910015040) do
+
+  create_table "addresses", :force => true do |t|
+    t.string   "address"
+    t.float    "lat"
+    t.float    "lng"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "routes", :force => true do |t|
-    t.string   "to"
-    t.string   "from"
     t.datetime "arrive_at"
     t.integer  "user_id"
+    t.integer  "to_id"
+    t.integer  "from_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

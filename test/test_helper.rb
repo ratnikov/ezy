@@ -21,4 +21,8 @@ class ActiveSupport::TestCase
 
     FakeWeb.register_uri :get, URI.escape("http://maps.google.com/maps/geo?key=#{ApplicationConfig.google_api_key}&output=xml&q=#{query}"), :body => body
   end
+
+  def register_geo_locations(hash)
+    hash.each { |(query, options)| register_geo_location query, options }
+  end
 end

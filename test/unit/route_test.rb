@@ -37,10 +37,20 @@ class RouteTest < ActiveSupport::TestCase
     end
   end
 
-  context "closest scope" do
+  context "order_by_proximity scope" do
     should "return closest routes" do
-      (route = Route.new(:arrive_at => Time.now, :email => 'someone@example.com', :password => 'foo', :from_address => '329 Pearson Circle, Naperville IL', :to_address => '834 W Bradley Pl, Chicago IL')).save!
-      puts "route: #{route.inspect}"
+      register_geo_locations 'chicago' => [ 41.85, -87.65 ],
+        'new york' => [ 40.71, -74.00 ],
+        'milwaukee' => [ 43.03, -87.90 ],
+        'boston' => [ 42.35, -71.06 ],
+        'san francisco' => [ 37.77, -122.41 ],
+        'los angeles' => [ 34.05, -118.24 ]
+
+      foo = Factory.create(:route, :from_address => 'milwaukee', :to_address => 'boston')
+      bar = Factory.create(:route, :from_address => 'chicago', :to_address => 'new york')
+      zeta = Factory.create(:route, :from_address => 'san francisco', :to_address => 'los angeles')
+
+      assert_equal [ bar, foo, zeta ], Route.order_by_proximity(bar).all
     end
   end
 end
