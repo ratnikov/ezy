@@ -1,0 +1,22 @@
+<h1><%#= title t('new-route') %></h1>
+
+<dl>
+<%= form_for @route do |f| %>
+  <dt><%= f.label :from %></dt>
+  <dd><%= f.text_field :from %></dd>
+
+  <dt><%= f.label :to %></dt>
+  <dd><%= f.text_field :to %></dd>
+
+  <dd><%= f.label :arrive_at %></dd>
+  <dd><%= f.text_field :arrive_at %></dd>
+
+  <dd><%= f.label :email %></dd>
+  <dt><%= f.email_field :email %></dt>
+
+  <dd><%= f.label :password %></dd>
+  <dt><%= f.password_field :password %></dd>
+
+  <dd><%= f.submit 'Create' %></dd>
+<% end %>
+</dl>
