@@ -12,9 +12,7 @@ class RoutesControllerTest < ActionController::TestCase
   context "#create" do
     setup { post :create, :route => { :from => 'point A', :to => 'point B', :arrive_at => @arrive_at = Time.now, :email => 'someone@example.com', :password => 'secret' } }
 
-    should("redirect to created route") do
-      assert_redirected_to route_path(assigns(:route))
-    end
+    should render_template('create')
 
     should("create a user") do
       assert_not_nil User.authenticate('someone@example.com', 'secret')

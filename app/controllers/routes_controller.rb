@@ -7,7 +7,7 @@ class RoutesController < ApplicationController
     @route = Route.new params[:route]
 
     if @route.save
-      redirect_to @route
+      render :action => 'create'
     else
       logger.debug "Failed to create route. Errors: #{@route.errors.full_messages.inspect}"
       render :action => 'new'
