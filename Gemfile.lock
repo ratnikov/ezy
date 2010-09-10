@@ -79,6 +79,8 @@ GEM
       rake (>= 0.8.7)
     gherkin (2.1.5)
       trollop (~> 1.16.2)
+    graticule (0.2.12)
+      activesupport
     i18n (0.4.1)
     json_pure (1.4.6)
     mail (2.2.5)
@@ -132,6 +134,7 @@ DEPENDENCIES
   escape_utils
   factory_girl_rails
   fakeweb
+  graticule
   pg
   rails (= 3.0.0.rc2)
   rr!

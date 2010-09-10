@@ -6,6 +6,8 @@ gem 'pg'
 gem 'clearance', :git => 'http://github.com/thoughtbot/clearance.git'
 gem 'escape_utils'
 
+gem 'graticule'
+
 group :test do
   gem 'test-unit'
   gem 'shoulda', :git => 'http://github.com/thoughtbot/shoulda.git'

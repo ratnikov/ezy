@@ -9,9 +9,16 @@ require 'template'
 class ActiveSupport::TestCase
   include RR::Adapters::TestUnit
 
-  def register_geo_location(query, latitude, longitude)
-    template = Template.new(File.join(Rails.root, 'test', 'fixtures', 'google_geo_response.xml.erb'), :address => query, :latitude => latitude, :longitude => longitude)
+  def fixture_file(file)
+    File.join Rails.root, 'test', 'fixtures', file
+  end
 
-    FakeWeb.register_uri :get, URI.escape("http://maps.google.com/maps/geo?key=#{ApplicationConfig.google_api_key}&output=xml&q=#{query}"), :body => template.to_s
+  def register_geo_location(query, options)
+    body = case options
+    when Array then Template.new(fixture_file('google_geo_response.xml.erb'), :address => query, :latitude => options.first, :longitude => options.last).to_s
+    when :bad_address then fixture_file('google_geo_bad.xml')
+    end
+
+    FakeWeb.register_uri :get, URI.escape("http://maps.google.com/maps/geo?key=#{ApplicationConfig.google_api_key}&output=xml&q=#{query}"), :body => body
   end
 end
