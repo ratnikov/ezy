@@ -1,5 +1,6 @@
 class RoutesController < ApplicationController
   def new
+    @route = Route.new
   end
 
   def create
@@ -8,7 +9,7 @@ class RoutesController < ApplicationController
     if @route.save
       redirect_to @route
     else
-      flash[:failure] = 'Failed to create route'
+      logger.debug "Failed to create route. Errors: #{@route.errors.full_messages.inspect}"
       render :action => 'new'
     end
   end

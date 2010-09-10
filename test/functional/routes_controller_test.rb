@@ -6,13 +6,15 @@ class RoutesControllerTest < ActionController::TestCase
 
     should render_template('new')
 
-    should assign_to(:route)
+    should("assign to @route") { assert_not_nil assigns(:route) }
   end
 
   context "#create" do
     setup { post :create, :route => { :from => 'point A', :to => 'point B', :arrive_at => @arrive_at = Time.now, :email => 'someone@example.com', :password => 'secret' } }
 
-    should redirect_to('route_path(Route.last)')
+    should("redirect to created route") do
+      assert_redirected_to route_path(assigns(:route))
+    end
 
     should("create a user") do
       assert_not_nil User.authenticate('someone@example.com', 'secret')
@@ -23,7 +25,7 @@ class RoutesControllerTest < ActionController::TestCase
 
       assert Route.exists?(route), "Should save the route in db"
 
-      assert_equal User.authenticate('someone@example.com', 'secret'), route, "Should assign the user correctly"
+      assert_equal User.authenticate('someone@example.com', 'secret'), route.user, "Should assign the user correctly"
       
       assert_equal 'point A', route.from
       assert_equal 'point B', route.to

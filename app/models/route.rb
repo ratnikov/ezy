@@ -1,7 +1,7 @@
 class Route < ActiveRecord::Base
   attr_accessor :email, :password
 
-  attr_accessible :from, :to, :arrive_at
+  attr_accessible :from, :to, :arrive_at, :email, :password
 
   belongs_to :user, :validate => true
 
