@@ -4,7 +4,7 @@ require 'rails/test_help'
 
 FakeWeb.allow_net_connect = false
 
-require 'template'
+require File.join(Rails.root, 'test', 'template')
 
 class ActiveSupport::TestCase
   include RR::Adapters::TestUnit

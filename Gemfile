@@ -19,6 +19,7 @@ group :test do
 
   gem 'fakeweb'
 
+  gem 'database_cleaner'
   gem 'cucumber'
   gem 'cucumber-rails'
   gem 'capybara'
