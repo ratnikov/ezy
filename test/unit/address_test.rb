@@ -18,7 +18,7 @@ class AddressTest < ActiveSupport::TestCase
 
       assert_equal false, (address = Address.new(:address => 'unknown place')).valid?, "Should not be valid"
 
-      assert address.errors[:address].any? { |m| m =~ /failed/i }, "Should have an error about unknown address"
+      assert address.errors[:address].any? { |m| m =~ /invalid/i }, "Should have an error about unknown address"
     end
   end
 end
