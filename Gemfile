@@ -14,6 +14,8 @@ group :test do
 
   gem 'factory_girl_rails'
 
+  gem 'fakeweb'
+
   gem 'cucumber'
   gem 'cucumber-rails'
   gem 'capybara'
