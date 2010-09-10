@@ -1,6 +1,5 @@
 Feature: In order to be able to share rides, users sohuld be able to interact with them
 
-@wip
 Scenario: A new-comer should be able to create a route
   Given I am on the home page
     
