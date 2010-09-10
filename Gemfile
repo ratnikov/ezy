@@ -4,6 +4,7 @@ gem 'rails', '3.0.0.rc2'
 
 gem 'pg'
 gem 'clearance', :git => 'http://github.com/thoughtbot/clearance.git'
+gem 'escape_utils'
 
 group :test do
   gem 'test-unit'
