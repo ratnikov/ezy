@@ -1,4 +1,4 @@
-<h1><%#= title t('new-route') %></h1>
+<h1><%= title t('new-route') %></h1>
 
 <dl>
 <%= form_for @route do |f| %>
@@ -8,14 +8,14 @@
   <dt><%= f.label :to_address %></dt>
   <dd><%= f.text_field :to_address %></dd>
 
-  <dd><%= f.label :arrive_at %></dd>
+  <dt><%= f.label :arrive_at %></dt>
   <dd><%= f.text_field :arrive_at %></dd>
 
-  <dd><%= f.label :email %></dd>
-  <dt><%= f.email_field :email %></dt>
+  <dt><%= f.label :email %></dt>
+  <dd><%= f.email_field :email %></dd>
 
-  <dd><%= f.label :password %></dd>
-  <dt><%= f.password_field :password %></dd>
+  <dt><%= f.label :password %></dt>
+  <dd><%= f.password_field :password %></dd>
 
   <dd><%= f.submit 'Create' %></dd>
 <% end %>
