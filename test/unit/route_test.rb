@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class RouteTest < ActiveSupport::TestCase
-  %w(to from arrive_at).each { |attr| should validate_presence_of(attr) }
+  %w(to_address from_address arrive_at).each { |attr| should validate_presence_of(attr) }
 
   %w(email password).each { |user_attr| should validate_presence_of(user_attr) }
 
@@ -34,6 +34,13 @@ class RouteTest < ActiveSupport::TestCase
       assert_equal false, route.save, "Should fail to create the route"
 
       assert route.errors[:password].any? { |error| error =~ /incorrect/i }, "Should report that password is wrong"
+    end
+  end
+
+  context "closest scope" do
+    should "return closest routes" do
+      (route = Route.new(:arrive_at => Time.now, :email => 'someone@example.com', :password => 'foo', :from_address => '329 Pearson Circle, Naperville IL', :to_address => '834 W Bradley Pl, Chicago IL')).save!
+      puts "route: #{route.inspect}"
     end
   end
 end

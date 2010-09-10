@@ -4,14 +4,14 @@ require 'rails/test_help'
 
 FakeWeb.allow_net_connect = false
 
+require 'template'
+
 class ActiveSupport::TestCase
   include RR::Adapters::TestUnit
 
-  # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
-  #
-  # Note: You'll currently still have to declare fixtures explicitly in integration tests
-  # -- they do not yet inherit this setting
-  fixtures :all
+  def register_geo_location(query, latitude, longitude)
+    template = Template.new(File.join(Rails.root, 'test', 'fixtures', 'google_geo_response.xml.erb'), :address => query, :latitude => latitude, :longitude => longitude)
 
-  # Add more helper methods to be used by all tests here...
+    FakeWeb.register_uri :get, URI.escape("http://maps.google.com/maps/geo?key=#{ApplicationConfig.google_api_key}&output=xml&q=#{query}"), :body => template.to_s
+  end
 end
