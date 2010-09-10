@@ -6,6 +6,8 @@ class RouteTest < ActiveSupport::TestCase
   %w(email password).each { |user_attr| should validate_presence_of(user_attr) }
 
   context "creating a route" do
+    setup { register_geo_locations 'default-from' => [ 1, 1 ], 'default-to' => [ 2, 2 ] }
+
     should("create an associated user if none exists") do
       assert_nil User.find_by_email('someone@example.com')
 
