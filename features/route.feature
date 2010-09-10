@@ -3,8 +3,8 @@ Feature: In order to be able to share rides, users sohuld be able to interact wi
 Scenario: A new-comer should be able to create a route
   Given I am on the home page
     
-   When I fill in "route_from" with "1 Infinite Loop, Cupertino CA"
-    And I fill in "route_to" with "1600 Amphitheatre Parkway, Mountain View, CA"
+   When I fill in "route_from_address" with "1 Infinite Loop, Cupertino CA"
+    And I fill in "route_to_address" with "1600 Amphitheatre Parkway, Mountain View, CA"
 
     And I fill in "route_arrive_at" with "12pm"
 
@@ -13,5 +13,6 @@ Scenario: A new-comer should be able to create a route
 
     And I press "Create"
 
-   Then user "steve@example.com/secret" should exist
+   Then I should see /route.*created/
+    And user "steve@example.com/secret" should exist
     And user "steve@example.com/secret" should have a route from "1 Infinite Loop, Cupertino CA" to "1600 Amphitheatre Parkway, Mountain View, CA"

@@ -5,7 +5,7 @@ end
 Then /^user "(.*)" should have a route from "(.*)" to "(.*)"$/ do |user, from, to|
   user = lookup_user(user)
 
-  assert user.routes.exists?(:from => from, :to => to), "Expected user to have a route from #{from.inspect} to #{to.inspect}"
+  assert user.routes.include?(lookup_route(to, from)), "Expected user to have a route from #{from.inspect} to #{to.inspect}"
 end
 
 module UserHelper
